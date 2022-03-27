@@ -1,0 +1,112 @@
+body {
+    background-color:rgb(37, 37, 37);
+}
+
+header {
+    width: 100%;
+    border-bottom: 1px solid white;
+    text-align: center;
+}
+
+nav {
+    display: block;
+    color: azure;
+    text-align: center;
+}
+
+button {
+    background-color: inherit;
+    border: none;
+    color: white;
+}
+
+h2 {
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul.chances > li {
+    display: inline-block;
+}
+
+ul.chances {    
+    text-align: center;
+    margin-right: 50px;
+}
+
+h1.topo {
+    color: white;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    display: inline;
+}
+
+#vida {
+    color:#FF0000;
+
+}
+
+#vitoria {
+    color: green;
+    font-size: 25px;
+}
+
+section {
+    color: azure;
+    text-align: center;
+    vertical-align: auto;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+input {
+    border-radius: 5px;
+    padding: 10px 15px;
+    margin: 10px 0;
+    border: 1px solid #CCCCCC;
+    font-family: inherit;
+    font-size: 1.35em;
+    color: inherit;
+    text-align: center;
+}
+
+::placeholder {
+
+    color: rgb(0, 0, 0);
+    text-align: center;
+}
+
+h2 {
+    color: white;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+article {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+article > img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    max-width: 1080px;
+    max-height: 580px;
+    height: auto;
+    border-radius: 10px;
+    border-color: black;
+    border: 10px solid rgb(131, 131, 131);
+    border-bottom-right-radius: 25px 50px;
+    border-top-right-radius: 25px 50px;
+    border-top-left-radius: 25px 50px;
+    border-bottom-left-radius: 25px 50px;
+}
+
+form {
+    text-align: center;
+}

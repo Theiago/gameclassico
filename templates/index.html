@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Guess The Classic</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+    <meta charset="UTF-8">
+    <script>
+        if ( window.history.replaceState ) {
+            window.history.replaceState( null, null, window.location.href );
+        }
+    </script>
+</head>
+
+<body class>
+    <header>
+        <h1 class="topo">GUESS THE CLASSIC</h1><button class="material-icons" href="#"><a href="#">menu</a>
+    </header>
+    <article>
+        <h2>Can you guess what game is just by the screenshot?</h2>
+        <img src="static/images/{{game_image}}" /><br /> <!-- MUDAR DIARAMENTE -->
+        {% if lifes <= 0 %}<h2>The game is: {{game_name}}</h2>{%endif%}
+        <ul class="chances">
+            {% if lifes == 3 %}
+            <li id="vida"><i class="material-icons">favorite</i></li>
+            <li id="vida"><i class="material-icons">favorite</i></li>
+            <li id="vida"><i class="material-icons">favorite</i></li>
+            {% elif lifes == 2 %}
+            <li id="vida"><i class="material-icons">favorite</i></li>
+            <li id="vida"><i class="material-icons">favorite</i></li>
+            <li><i class="material-icons">favorite</i></li>
+            {% elif lifes == 1 %}
+            <li id="vida"><i class="material-icons">favorite</i></li>
+            <li><i class="material-icons">favorite</i></li>
+            <li><i class="material-icons">favorite</i></li>
+            {% elif lifes == -1 %}
+            <p id="vitoria">You got it!!</p>
+            {% else %}
+            <p id="vida">You lose :(</p>
+            {%endif%}
+        </ul>
+        {% if lifes > 0 %}<form method="post"><input type="text" id="guess" size="25" name="guess" placeholder="What is your guess?" autocomplete="off" required> <input type="submit"></form>{%endif%}
+        
+        <h2>{{today}}</h1>
+    </article>
+</body>
+
+</html>
