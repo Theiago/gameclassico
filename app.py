@@ -11,20 +11,15 @@ app.secret_key = "!yw2gC8!BeM3"
 
 # Páginas
 
-
-tomorrow = None
+game_id = randint(0, 14)
 
 
 @app.before_first_request
 def set_date():
     global today
     global tomorrow
-    global game_id
     # f = open(os.path.join(app.static_folder, "data.json"), "r+")
     # data = json.load(f)
-    game_id = False
-    if not game_id:
-        game_id = randint(0, 14)
     tomorrow = date.today() + timedelta(days=1)
     today = date.today()
     session.permanent = True
