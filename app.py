@@ -36,10 +36,10 @@ def homepage():
         session["lifes"] = 3
     f = open(os.path.join(app.static_folder, "data.json"), "r+")
     data = json.load(f)
-    '''if date.today() == tomorrow:
+    if date.today() == tomorrow:
         session["lifes"] = 3
         game_id = randint(0, 14)
-        tomorrow = date.today() + timedelta(days=1)'''
+        tomorrow = date.today() + timedelta(days=1)
     game_image = data[game_id]["image"]
     game_name = data[game_id]["name"]  # Mudar diaramente automaticamente
     if request.method == 'POST':
