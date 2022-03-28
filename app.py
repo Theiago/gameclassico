@@ -20,11 +20,11 @@ def set_date():
     global today
     global tomorrow
     global game_id
-    f = open(os.path.join(app.static_folder, "data.json"), "r+")
-    data = json.load(f)
+    # f = open(os.path.join(app.static_folder, "data.json"), "r+")
+    # data = json.load(f)
     tomorrow = date.today() + timedelta(days=1)
     today = date.today()
-    game_id = randint(0, len(data))
+    game_id = 5
     session.permanent = True
     session["lifes"] = 3
     app.permanent_session_lifetime = timedelta(days=31)
