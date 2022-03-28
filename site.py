@@ -29,6 +29,7 @@ def set_date():
     session["lifes"] = 3
     app.permanent_session_lifetime = timedelta(days=31)
 
+
 @app.route("/", methods=['GET', 'POST'])
 def homepage():
     global today
@@ -56,3 +57,5 @@ def homepage():
 
 if __name__ == "__main__":
     app.run(debug=True)
+
+# Heroku
