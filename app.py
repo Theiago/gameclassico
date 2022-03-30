@@ -25,6 +25,7 @@ def set_date():
     app.permanent_session_lifetime = timedelta(days=31)
 
 
+@app.route("/set")
 def change_date():
     global game_id
     global tomorrow
