@@ -25,9 +25,9 @@ def set_date():
 
 @app.route("/", methods=['GET', 'POST'])
 def homepage():
-    global today
     global tomorrow
     global game_id
+    today = datetime.today()
     if today.strftime('%Y-%m-%d') == tomorrow.strftime('%Y-%m-%d'):
         tomorrow = datetime.today() + timedelta(days=1)
         game_id = randint(1, 10)
@@ -46,7 +46,7 @@ def homepage():
         else:
             session["lifes"] = -1
     return render_template("index.html", lifes=session['lifes'],
-                           game_name=game_name, game_image=game_image)
+                           game_name=game_name, game_image=game_image, today=today, tomorrow=tomorrow)
 
 
 if __name__ == "__main__":
