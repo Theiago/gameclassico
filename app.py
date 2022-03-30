@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request, session
 import json
 import os
-from datetime import date, timedelta, datetime
+from datetime import timedelta, datetime
 from random import randint
 
 
@@ -23,14 +23,20 @@ def set_date():
     app.permanent_session_lifetime = timedelta(days=31)
 
 
+def change_date():
+    global game_id
+    global tomorrow
+    tomorrow = datetime.today() + timedelta(days=1)
+    game_id = randint(1, 10)
+
+
 @app.route("/", methods=['GET', 'POST'])
 def homepage():
     global tomorrow
     global game_id
     today = datetime.today()
     if today.strftime('%Y-%m-%d') == tomorrow.strftime('%Y-%m-%d'):
-        tomorrow = datetime.today() + timedelta(days=1)
-        game_id = randint(1, 10)
+        change_date()
     if session.get("lifes") is None:
         session["lifes"] = 3
     f = open(os.path.join(app.static_folder, "data.json"), "r+")

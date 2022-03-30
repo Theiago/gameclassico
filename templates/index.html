@@ -20,7 +20,7 @@
     </header>
     <article>
         <h2>Can you guess what game is just by the screenshot?</h2>
-        <img src="static/images/{{game_image}}" /><br /> <!-- MUDAR DIARAMENTE -->
+        <img src="static/images/{{game_image}}" alt="Game screenshot"/><br /> <!-- MUDAR DIARAMENTE -->
         {% if lifes <= 0 %}<h2>The game is: {{game_name}}</h2>{%endif%}
         <ul class="chances">
             {% if lifes == 3 %}
