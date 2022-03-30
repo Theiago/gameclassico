@@ -12,14 +12,12 @@ app.secret_key = "!yw2gC8!BeM3"
 # Páginas
 
 today = datetime.today()
-tomorrow = datetime.today() - timedelta(days=1)
-game_id = randint(1, 14)
+tomorrow = datetime.today() + timedelta(days=1)
+game_id = randint(1, 10)
 
 
 @app.before_first_request
 def set_date():
-    # f = open(os.path.join(app.static_folder, "data.json"), "r+")
-    # data = json.load(f)
     session.permanent = True
     session["lifes"] = 3
     app.permanent_session_lifetime = timedelta(days=31)
@@ -32,15 +30,11 @@ def homepage():
     global game_id
     if today.strftime('%Y-%m-%d') == tomorrow.strftime('%Y-%m-%d'):
         tomorrow = datetime.today() + timedelta(days=1)
-        game_id = randint(1, 14)
+        game_id = randint(1, 10)
     if session.get("lifes") is None:
         session["lifes"] = 3
     f = open(os.path.join(app.static_folder, "data.json"), "r+")
     data = json.load(f)
-    '''if date.today() == tomorrow:
-        session["lifes"] = 3
-        game_id = randint(0, 14)
-        tomorrow = date.today() + timedelta(days=1)'''
     game_image = data[game_id]["image"]
     game_name = data[game_id]["name"]  # Mudar diaramente automaticamente
     if request.method == 'POST':
@@ -48,7 +42,7 @@ def homepage():
             session["lifes"] -= 1
             return render_template("index.html",
                                    lifes=session['lifes'],
-                                   game_name=game_name, game_image=game_image)
+                                   game_name=game_name, game_image=game_image, today=today, tomorrow=tomorrow)
         else:
             session["lifes"] = -1
     return render_template("index.html", lifes=session['lifes'],
