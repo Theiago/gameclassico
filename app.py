@@ -11,13 +11,15 @@ app.secret_key = "!yw2gC8!BeM3"
 
 # Páginas
 
-today = datetime.today()
-tomorrow = datetime.today() + timedelta(days=1)
-game_id = randint(1, 10)
-
 
 @app.before_first_request
 def set_date():
+    global today
+    global tomorrow
+    global game_id
+    today = datetime.today()
+    tomorrow = datetime.today() + timedelta(days=1)
+    game_id = randint(1, 10)
     session.permanent = True
     session["lifes"] = 3
     app.permanent_session_lifetime = timedelta(days=31)
@@ -35,8 +37,8 @@ def homepage():
     global tomorrow
     global game_id
     today = datetime.today()
-    #if today.strftime('%Y-%m-%d') == tomorrow.strftime('%Y-%m-%d'):
-    #    change_date()
+    if today.strftime('%Y-%m-%d') == tomorrow.strftime('%Y-%m-%d'):
+        change_date()
     if session.get("lifes") is None:
         session["lifes"] = 3
     f = open(os.path.join(app.static_folder, "data.json"), "r+")
