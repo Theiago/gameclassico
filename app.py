@@ -35,8 +35,8 @@ def homepage():
     global tomorrow
     global game_id
     today = datetime.today()
-    if today.strftime('%Y-%m-%d') == tomorrow.strftime('%Y-%m-%d'):
-        change_date()
+    #if today.strftime('%Y-%m-%d') == tomorrow.strftime('%Y-%m-%d'):
+    #    change_date()
     if session.get("lifes") is None:
         session["lifes"] = 3
     f = open(os.path.join(app.static_folder, "data.json"), "r+")
