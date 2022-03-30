@@ -46,14 +46,11 @@ def homepage():
     if request.method == 'POST':
         if request.form['guess'].casefold() != game_name.casefold():
             session["lifes"] -= 1
-            return render_template("index.html",
-                                   lifes=session['lifes'],
-                                   game_name=game_name, game_image=game_image, today=today, tomorrow=tomorrow)
         else:
             session["lifes"] = -1
     return render_template("index.html", lifes=session['lifes'],
                            game_name=game_name, game_image=game_image, today=today, tomorrow=tomorrow)
-
+    
 
 if __name__ == "__main__":
     app.run(debug=True)
