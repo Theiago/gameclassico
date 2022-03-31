@@ -3,23 +3,10 @@ body {
 }
 
 header {
-    display: grid;
+    display: block;
     width: 100%;
-    height: auto;
     border-bottom: 1px solid white;
     text-align: center;
-}
-
-nav {
-    display: block;
-    color: azure;
-    text-align: center;
-}
-
-button {
-    background-color: inherit;
-    border: none;
-    color: white;
 }
 
 a {
@@ -99,6 +86,8 @@ article > img {
     margin-left: auto;
     margin-right: auto;
     max-height: 50vh;
+    min-width: 400px;
+    max-width: 85%;
     border-radius: 10px;
     border-color: black;
     border: 10px solid rgb(131, 131, 131);
@@ -114,5 +103,40 @@ form {
 
 .send:hover {
     background-color: rgb(202, 200, 200);
+
+}
+
+@media only screen and (max-width: 1200px) {
+    article {
+        vertical-align: middle;
+    }
+h1.topo {
+    font-size: 80px;
+}
+
+h2 {
+    font-size: 3em;
+}
+
+.material-icons{
+    font-size: 100px;
+}
+
+input {
+    width: 80%;
+    height: 4em;
+}
+
+input::placeholder{
+    font-size: 2em;
+    color:rgb(131, 131, 131)
+}
+
+.send {
+    font-size: 2em;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    height: auto;
+    width: 30%;
+}
 
 }

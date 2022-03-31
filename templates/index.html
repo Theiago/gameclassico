@@ -14,7 +14,7 @@
     </script>
 </head>
 
-<body class>
+<body>
     <header>
         <h1 class="topo">GUESS THE CLASSIC</h1>
     </header>
@@ -37,10 +37,10 @@
             <li><i class="material-icons">favorite</i></li>
             {% elif lifes == -1 %}
             <p id="vitoria">You got it!!</p>
-            <h3>You can play again in {{hours_remaining}}:{{min_remaining}}h</h3>
+            <h3>You can play again in: {{hours_remaining}}:{{min_remaining}}h</h3>
             {% else %}
             <p id="vida">You lose :(</p>
-            <h3>You can try it again in {{hours_remaining}}:{{min_remaining}}h</h3>
+            <h3>You can try it again in: {{hours_remaining}}:{{min_remaining}}h</h3>
             {%endif%}
         </ul>
         {% if lifes > 0 %}<form method="post"><input type="text" id="guess" size="25" name="guess" placeholder="What is your guess?" autocomplete="off" required><br />
