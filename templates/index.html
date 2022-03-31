@@ -43,7 +43,8 @@
             <h3>You can try it again in {{hours_remaining}}:{{min_remaining}}h</h3>
             {%endif%}
         </ul>
-        {% if lifes > 0 %}<form method="post"><input type="text" id="guess" size="25" name="guess" placeholder="What is your guess?" autocomplete="off" required> <input type="submit"></form>{%endif%}
+        {% if lifes > 0 %}<form method="post"><input type="text" id="guess" size="25" name="guess" placeholder="What is your guess?" autocomplete="off" required><br />
+        <input type="submit" class="send" value="Submit"></form>{%endif%}
     </article>
 </body>
 
