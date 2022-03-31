@@ -145,6 +145,9 @@ h1.topo {
 
 h2 {
     font-size: 3em;
+    color: white;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    text-align: center;
 }
 
 #vida {
@@ -166,6 +169,14 @@ h2 {
 input {
     width: 80%;
     height: 4em;
+    border-radius: 5px;
+    padding: 10px 15px;
+    margin: 10px 0;
+    border: 1px solid #CCCCCC;
+    font-family: inherit;
+    font-size: 1.35em;
+    color: inherit;
+    text-align: center;
 }
 
 input::placeholder{
@@ -196,5 +207,8 @@ article > img {
     border-bottom-left-radius: 25px 50px;
 }
 
+form {
+    text-align: center;
+}
 
 }
