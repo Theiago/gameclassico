@@ -14,35 +14,41 @@ app.secret_key = "!yw2gC8!BeM3"
 
 @app.before_first_request
 def set_date():
-    global today
-    global tomorrow
-    global game_id
-    today = datetime.today()
-    tomorrow = datetime.today() + timedelta(days=1)
-    game_id = randint(0, 13)
     session.permanent = True
     session["lifes"] = 3
-    app.permanent_session_lifetime = timedelta(days=31)
+    app.permanent_session_lifetime = timedelta(days=365)
 
 
 @app.route("/set")
 def change_date():
-    tomorrow = datetime.today() + timedelta(days=1)
-    game_id = randint(1, 13)
-    return game_id, tomorrow
+    f = open(os.path.join(app.static_folder, "data.json"), "r+")
+    data = json.load(f)
+    f.close()
+    data[0]["game_id"] = randint(0, 13)
+    data[0]["tomorrow"] = datetime.today().strftime('%Y-%m-%d')
+    f = open(os.path.join(app.static_folder, "data.json"), "w+")
+    f.write(json.dumps(data))
 
 
 @app.route("/", methods=['GET', 'POST'])
 def homepage():
-    global tomorrow
-    global game_id
-    today = datetime.today()
-    if today.strftime('%Y-%m-%d') == tomorrow.strftime('%Y-%m-%d'):
-        game_id, tomorrow = change_date()
-    if session.get("lifes") is None:
-        session["lifes"] = 3
     f = open(os.path.join(app.static_folder, "data.json"), "r+")
     data = json.load(f)
+    game_id = int(data[0]["game_id"])
+    if request.method == 'POST':
+        if request.form['guess'] == "teste":
+            tomorrow = datetime.today() + timedelta(days=1)
+            tomorrow = tomorrow.strftime('%Y-%m-%d')
+            data[game_id]["viewed"] = True
+            data[0]["game_id"] = str(randint(0, 13))
+            data[0]["tomorrow"] = tomorrow
+            f = open(os.path.join(app.static_folder, "data.json"), "w+")
+            f.write(json.dumps(data))
+            f.close()
+    if datetime.today().strftime('%Y-%m-%d') == data[0]["tomorrow"]:
+        change_date()
+    if session.get("lifes") is None:
+        session["lifes"] = 3
     game_image = data[game_id]["image"]
     game_name = data[game_id]["name"]  # Mudar diaramente automaticamente
     if request.method == 'POST':
@@ -51,8 +57,8 @@ def homepage():
         else:
             session["lifes"] = -1
     return render_template("index.html", lifes=session['lifes'],
-                           game_name=game_name, game_image=game_image, today=today, tomorrow=tomorrow)
+                           game_name=game_name, game_image=game_image)
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
