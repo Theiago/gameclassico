@@ -72,5 +72,15 @@
         "name": "Tarzan",
         "image": "13.jpg",
         "viewed": false
+    },
+    {
+        "name": "Alex Kidd",
+        "image": "14.jpg",
+        "viewed": false
+    },
+    {
+        "name": "Contra",
+        "image": "15.jpg",
+        "viewed": false
     }
 ]
