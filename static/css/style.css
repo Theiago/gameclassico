@@ -107,9 +107,9 @@ form {
 }
 
 @media only screen and (max-width: 1200px) {
-    article {
-        vertical-align: middle;
-    }
+article {
+    vertical-align: middle;
+}
 h1.topo {
     font-size: 80px;
 }
