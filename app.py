@@ -33,6 +33,7 @@ def change_date():
     data[0]["tomorrow"] = tomorrow
     f = open(os.path.join(app.static_folder, "data.json"), "w+")
     f.write(json.dumps(data))
+    f.close()
     session["lifes"] = 3
 
 
@@ -41,6 +42,7 @@ def homepage():
     f = open(os.path.join(app.static_folder, "data.json"), "r+")
     data = json.load(f)
     game_id = int(data[0]["game_id"])
+    f.close()
     if datetime.today().strftime('%Y-%m-%d') == data[0]["tomorrow"]:
         change_date()
     if session.get("lifes") is None:
