@@ -5,6 +5,7 @@
     <title>Guess The Classic</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
+      <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
     <meta charset="UTF-8">
     <script>
@@ -12,6 +13,7 @@
             window.history.replaceState( null, null, window.location.href );
         }
     </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
