@@ -4,12 +4,11 @@ import os
 from datetime import timedelta, datetime
 from random import randint
 
+# Configuration
 
 app = Flask(__name__)
 app.config.from_object(__name__)
 app.secret_key = "!yw2gC8!BeM3"
-
-# Páginas
 
 
 @app.before_first_request
@@ -18,6 +17,7 @@ def set_date():
     session["lifes"] = 3
     app.permanent_session_lifetime = timedelta(days=365)
 
+# Change the game
 
 @app.route("/set")
 def change_date():
@@ -28,17 +28,27 @@ def change_date():
     games_total = len(data) - 1
     f.close()
     game_id = int(data[0]["game_id"])
-    data[game_id]["viewed"] = "True"
-    data[0]["game_id"] = randint(0, games_total)
+    data[game_id]["viewed"] = True
+    print(data[game_id]["viewed"])
+    while data[game_id]["viewed"] == True:
+        game_id = randint(1, games_total)
+        data[0]["game_id"] = game_id
     data[0]["tomorrow"] = tomorrow
     f = open(os.path.join(app.static_folder, "data.json"), "w+")
     f.write(json.dumps(data))
     f.close()
     session["lifes"] = 3
 
+# Mainpage
 
 @app.route("/", methods=['GET', 'POST'])
 def homepage():
+    h = int(datetime.today().strftime("%H"))
+    m = int(datetime.today().strftime("%M"))
+    total = 1440 - 60 * h - m
+    hours_remaining = total // 60
+    min_remaining = total % 60
+    print(f"{hours_remaining:02d}:{min_remaining:02}")
     f = open(os.path.join(app.static_folder, "data.json"), "r+")
     data = json.load(f)
     game_id = int(data[0]["game_id"])
@@ -55,7 +65,8 @@ def homepage():
         else:
             session["lifes"] = -1
     return render_template("index.html", lifes=session['lifes'],
-                           game_name=game_name, game_image=game_image)
+                           game_name=game_name, game_image=game_image, data=data,
+                           hours_remaining=hours_remaining, min_remaining=min_remaining)
 
 
 if __name__ == "__main__":
