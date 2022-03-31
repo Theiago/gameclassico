@@ -19,7 +19,7 @@ def set_date():
     global game_id
     today = datetime.today()
     tomorrow = datetime.today() + timedelta(days=1)
-    game_id = randint(1, 10)
+    game_id = randint(0, 13)
     session.permanent = True
     session["lifes"] = 3
     app.permanent_session_lifetime = timedelta(days=31)
@@ -27,10 +27,9 @@ def set_date():
 
 @app.route("/set")
 def change_date():
-    global game_id
-    global tomorrow
     tomorrow = datetime.today() + timedelta(days=1)
-    game_id = randint(1, 10)
+    game_id = randint(1, 13)
+    return game_id, tomorrow
 
 
 @app.route("/", methods=['GET', 'POST'])
@@ -39,7 +38,7 @@ def homepage():
     global game_id
     today = datetime.today()
     if today.strftime('%Y-%m-%d') == tomorrow.strftime('%Y-%m-%d'):
-        change_date()
+        game_id, tomorrow = change_date()
     if session.get("lifes") is None:
         session["lifes"] = 3
     f = open(os.path.join(app.static_folder, "data.json"), "r+")
@@ -53,9 +52,7 @@ def homepage():
             session["lifes"] = -1
     return render_template("index.html", lifes=session['lifes'],
                            game_name=game_name, game_image=game_image, today=today, tomorrow=tomorrow)
-    
+
 
 if __name__ == "__main__":
-    app.run(debug=True)
-
-# Heroku
+    app.run
