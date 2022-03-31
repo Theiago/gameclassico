@@ -21,13 +21,19 @@ def set_date():
 
 @app.route("/set")
 def change_date():
+    tomorrow = datetime.today() + timedelta(days=1)
+    tomorrow = tomorrow.strftime('%Y-%m-%d')
     f = open(os.path.join(app.static_folder, "data.json"), "r+")
     data = json.load(f)
+    games_total = len(data) - 1
     f.close()
-    data[0]["game_id"] = randint(0, 13)
-    data[0]["tomorrow"] = datetime.today().strftime('%Y-%m-%d')
+    game_id = int(data[0]["game_id"])
+    data[game_id]["viewed"] = "True"
+    data[0]["game_id"] = randint(0, games_total)
+    data[0]["tomorrow"] = tomorrow
     f = open(os.path.join(app.static_folder, "data.json"), "w+")
     f.write(json.dumps(data))
+    session["lifes"] = 3
 
 
 @app.route("/", methods=['GET', 'POST'])
@@ -35,16 +41,6 @@ def homepage():
     f = open(os.path.join(app.static_folder, "data.json"), "r+")
     data = json.load(f)
     game_id = int(data[0]["game_id"])
-    if request.method == 'POST':
-        if request.form['guess'] == "teste":
-            tomorrow = datetime.today() + timedelta(days=1)
-            tomorrow = tomorrow.strftime('%Y-%m-%d')
-            data[game_id]["viewed"] = True
-            data[0]["game_id"] = str(randint(0, 13))
-            data[0]["tomorrow"] = tomorrow
-            f = open(os.path.join(app.static_folder, "data.json"), "w+")
-            f.write(json.dumps(data))
-            f.close()
     if datetime.today().strftime('%Y-%m-%d') == data[0]["tomorrow"]:
         change_date()
     if session.get("lifes") is None:

@@ -46,12 +46,13 @@ h1.topo {
 
 #vida {
     color:#FF0000;
+    font-size: 30px;
 
 }
 
 #vitoria {
     color: green;
-    font-size: 25px;
+    font-size: 30px;
 }
 
 section {
@@ -95,8 +96,8 @@ article > img {
     margin-left: auto;
     margin-right: auto;
     width: 100%;
-    max-width: 1080px;
-    max-height: 580px;
+    max-width: 70em;
+    max-height: 50em;
     height: auto;
     border-radius: 10px;
     border-color: black;
