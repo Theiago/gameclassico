@@ -22,6 +22,8 @@ ul.chances > li {
 ul.chances {    
     text-align: center;
     margin-right: 50px;
+    margin-top: unset;
+    margin-bottom: unset;
 }
 
 h1.topo {
