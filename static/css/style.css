@@ -197,7 +197,7 @@ article > img {
     margin-right: auto;
     max-height: 50vh;
     min-width: 400px;
-    max-width: 85%;
+    max-width: 50vh;
     border-radius: 10px;
     border-color: black;
     border: 10px solid rgb(131, 131, 131);
