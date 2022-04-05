@@ -46,8 +46,8 @@ def homepage():
     h = int(datetime.today().strftime("%H"))
     m = int(datetime.today().strftime("%M"))
     total = 1440 - 60 * h - m
-    hours_remaining = total // 60
-    min_remaining = total % 60
+    hours_remaining = str(total // 60).zfill(2)
+    min_remaining = str(total % 60).zfill(2)
     f = open(os.path.join(app.static_folder, "data.json"), "r+")
     data = json.load(f)
     game_id = int(data[0]["game_id"])
