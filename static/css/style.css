@@ -69,3 +69,17 @@ input {
 .chances > li {
     display: inline;
 }
+
+@media only screen and (max-width: 800px) {
+    
+    .image {
+        display: flex;
+        border-radius: 10px;
+        max-width: 90%;
+        border-color: black;
+        border: 10px solid rgb(131, 131, 131);
+        align-items: center;
+        margin-left: auto;
+        margin-right: auto;
+  }
+}
