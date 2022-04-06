@@ -1,3 +1,4 @@
+@media only screen and (min-width: 1000px) {
 body {
     background-color:#252525;
 }
@@ -12,7 +13,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-top: 5vh;
+    padding-top: 1vh;
 
 }
 
@@ -69,8 +70,80 @@ input {
 .chances > li {
     display: inline;
 }
-
+}
 @media only screen and (max-width: 600px) {
+    body {
+        background-color:#252525;
+    }
+    
+    .header {
+        display: flex;
+        justify-content: center;
+        border-bottom: 1px solid white;
+    }
+    
+    .content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-top: 1vh;
+    
+    }
+    
+    li {
+        list-style-type: none;
+        text-align: center;
+    }
+    
+    ul {
+        padding: 0;
+    }
+    
+    #vida {
+        color: red;
+    }
+    
+    .image {
+        display: flex;
+        border-radius: 10px;
+        max-width: 60%;
+        border-color: black;
+        border: 10px solid rgb(131, 131, 131);
+        align-items: center;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 10px;
+    }
+    
+    h1 {
+        color: white;
+        font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    }
+    
+    h2 {
+        color: white;
+        font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    }
+    
+    input {
+        border-radius: 5px;
+        padding: 10px 15px;
+        margin: 10px 0;
+        border: 1px solid #CCCCCC;
+        font-family: inherit;
+        font-size: 1.35em;
+        color: inherit;
+    }
+    
+    ::placeholder {
+        text-align: center;
+        color: #787878
+    }
+    
+    .chances > li {
+        display: inline;
+    }
+
     .image {
         display: flex;
         border-radius: 10px;
