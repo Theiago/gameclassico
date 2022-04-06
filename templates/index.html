@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
     <title>Guess The Classic</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -15,39 +14,40 @@
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-
 <body>
-    <header>
-        <h1 class="topo">GUESS THE CLASSIC</h1>
-    </header>
-    <article>
-        <h2>Can you guess what game is just by the screenshot?</h2>
-        <img src="static/images/{{game_image}}" alt="Game screenshot"/><br /> <!-- MUDAR DIARAMENTE -->
-        {% if lifes <= 0 %}<h2>The game is: {{game_name}}</h2>{%endif%}
-        <ul class="chances">
-            {% if lifes == 3 %}
-            <li id="vida"><i class="material-icons">favorite</i></li>
-            <li id="vida"><i class="material-icons">favorite</i></li>
-            <li id="vida"><i class="material-icons">favorite</i></li>
-            {% elif lifes == 2 %}
-            <li id="vida"><i class="material-icons">favorite</i></li>
-            <li id="vida"><i class="material-icons">favorite</i></li>
-            <li><i class="material-icons">favorite</i></li>
-            {% elif lifes == 1 %}
-            <li id="vida"><i class="material-icons">favorite</i></li>
-            <li><i class="material-icons">favorite</i></li>
-            <li><i class="material-icons">favorite</i></li>
-            {% elif lifes == -1 %}
-            <p id="vitoria">You got it!!</p>
-            <h3>You can play again in: {{hours_remaining}}:{{min_remaining}}h</h3>
-            {% else %}
-            <p id="vida">You lose :(</p>
-            <h3>You can try it again in: {{hours_remaining}}:{{min_remaining}}h</h3>
-            {%endif%}
-        </ul>
-        {% if lifes > 0 %}<form method="post"><input type="text" id="guess" size="25" name="guess" placeholder="What is your guess?" autocomplete="off" required><br />
-        <input type="submit" class="send" value="Submit"></form>{%endif%}
-    </article>
-</body>
 
+    <div class="header"><h1>Guess The Classic</h1></div>
+    <div class="content"><ul>
+        <li><h2>Can you guess what game is just by the screenshot?</h2></li>
+        <li><img src="static/images/{{game_image}}" class="image"/></li>
+        {% if lifes <= 0 %}<li><h2>The game is: {{game_name}}</h2></li>{%endif%}
+        <li>
+            <ul class="chances">
+                {% if lifes == 3 %}
+                <li id="vida"><i class="material-icons">favorite</i></li>
+                <li id="vida"><i class="material-icons">favorite</i></li>
+                <li id="vida"><i class="material-icons">favorite</i></li>
+                {% elif lifes == 2 %}
+                <li id="vida"><i class="material-icons">favorite</i></li>
+                <li id="vida"><i class="material-icons">favorite</i></li>
+                <li><i class="material-icons">favorite</i></li>
+                {% elif lifes == 1 %}
+                <li id="vida"><i class="material-icons">favorite</i></li>
+                <li><i class="material-icons">favorite</i></li>
+                <li><i class="material-icons">favorite</i></li>
+                {% elif lifes == -1 %}
+                <p id="vitoria">You got it!!</p>
+                <h3>You can play again in: {{hours_remaining}}:{{min_remaining}}h</h3>
+                {% else %}
+                <p id="vida">You lose :(</p>
+                <h3>You can try it again in: {{hours_remaining}}:{{min_remaining}}h</h3>
+                {%endif%}
+            </ul>
+        </li>
+        {% if lifes > 0 %}<li><form method="post"><input type="text" id="guess" size="25" name="guess" placeholder="What is your guess?" autocomplete="off" required><br />
+            <input type="submit" class="send" value="Submit"></form></li>{%endif%}
+    </ul>
+    </div>
+
+</body>
 </html>
