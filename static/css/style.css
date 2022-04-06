@@ -25,8 +25,19 @@ ul {
     padding: 0;
 }
 
+
 #vida {
-    color: red;
+    color: #ff0000;
+}
+
+#win {
+    color: green;
+    font-size: 30px;
+}
+
+#wrong {
+    color: #800000;
+    font-size: 30px;
 }
 
 .image {
@@ -49,6 +60,10 @@ h1 {
 h2 {
     color: white;
     font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+h3 {
+    color: #9b9b00;
 }
 
 input {
