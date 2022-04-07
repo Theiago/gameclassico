@@ -85,12 +85,39 @@ input {
     display: inline;
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (orientation: portrait) {
     
     .image {
         display: flex;
         border-radius: 10px;
         max-width: 90%;
+        border-color: black;
+        border: 10px solid rgb(131, 131, 131);
+        align-items: center;
+        margin-left: auto;
+        margin-right: auto;
+  }
+}
+
+@media only screen and (max-height: 800px) {
+    
+
+    h1 {
+        color: white;
+        font-size: 20px;
+        font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    }
+    
+    h2 {
+        color: white;
+        font-size: 15px;
+        font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    }
+
+    .image {
+        display: flex;
+        border-radius: 10px;
+        max-width: 300px;
         border-color: black;
         border: 10px solid rgb(131, 131, 131);
         align-items: center;
