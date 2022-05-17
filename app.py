@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, session
+from flask import Flask, render_template, request, session, redirect
 import json
 import os
 from datetime import timedelta, datetime
@@ -19,7 +19,7 @@ def set_date():
 
 # Change the game
 
-@app.route("/set")
+@app.route("/set/526535")
 def change_date():
     tomorrow = datetime.today() + timedelta(days=1)
     tomorrow = tomorrow.strftime('%Y-%m-%d')
@@ -29,7 +29,6 @@ def change_date():
     f.close()
     game_id = int(data[0]["game_id"])
     data[game_id]["viewed"] = True
-    print(data[game_id]["viewed"])
     while data[game_id]["viewed"] == True:
         game_id = randint(1, games_total)
         data[0]["game_id"] = game_id
@@ -38,6 +37,7 @@ def change_date():
     f.write(json.dumps(data))
     f.close()
     session["lifes"] = 3
+    return redirect("/")
 
 # Mainpage
 
@@ -54,6 +54,7 @@ def homepage():
     f.close()
     if datetime.today().strftime('%Y-%m-%d') == data[0]["tomorrow"]:
         change_date()
+        redirect('/')
     if session.get("lifes") is None:
         session["lifes"] = 3
     game_image = data[game_id]["image"]
