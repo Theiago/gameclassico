@@ -15,6 +15,7 @@ app.secret_key = "!yw2gC8!BeM3"
 def set_date():
     session.permanent = True
     session["lifes"] = 3
+    session["blur"] = 15
     app.permanent_session_lifetime = timedelta(days=365)
 
 # Change the game
@@ -37,6 +38,7 @@ def change_date():
     f.write(json.dumps(data))
     f.close()
     session["lifes"] = 3
+    session["blur"] = 15
     return redirect("/")
 
 # Mainpage
@@ -57,16 +59,18 @@ def homepage():
         redirect('/')
     if session.get("lifes") is None:
         session["lifes"] = 3
+        session["blur"] = 15
     game_image = data[game_id]["image"]
     game_name = data[game_id]["name"]  # Mudar diaramente automaticamente
     if request.method == 'POST':
         if request.form['guess'].casefold() != game_name.casefold():
             session["lifes"] -= 1
+            session["blur"] -= 5
         else:
             session["lifes"] = -1
     return render_template("index.html", lifes=session['lifes'],
                            game_name=game_name, game_image=game_image, data=data,
-                           hours_remaining=hours_remaining, min_remaining=min_remaining)
+                           hours_remaining=hours_remaining, min_remaining=min_remaining, blur=session["blur"])
 
 
 if __name__ == "__main__":
