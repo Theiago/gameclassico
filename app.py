@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, session, redirect
 import json
 import os
 from datetime import timedelta, datetime
-from random import randint
+from database import all_game_info
 
 # Configuration
 
@@ -22,18 +22,23 @@ def set_date():
 
 @app.route("/set/526535")
 def change_date():
+    game_infos = None
     tomorrow = datetime.today() + timedelta(days=1)
     tomorrow = tomorrow.strftime('%Y-%m-%d')
     f = open(os.path.join(app.static_folder, "data.json"), "r+")
+    while not game_infos:
+        game_infos = all_game_info()
     data = json.load(f)
-    games_total = len(data) - 1
     f.close()
-    game_id = int(data[0]["game_id"])
-    data[game_id]["viewed"] = True
-    while data[game_id]["viewed"] == True:
-        game_id = randint(1, games_total)
-        data[0]["game_id"] = game_id
-    data[0]["tomorrow"] = tomorrow
+
+    data = {
+        "name": game_infos[0][1],
+        "url": game_infos[1],
+        "tomorrow": tomorrow,
+    }
+
+    print(data)
+
     f = open(os.path.join(app.static_folder, "data.json"), "w+")
     f.write(json.dumps(data))
     f.close()
@@ -52,22 +57,24 @@ def homepage():
     min_remaining = str(total % 60).zfill(2)
     f = open(os.path.join(app.static_folder, "data.json"), "r+")
     data = json.load(f)
-    game_id = int(data[0]["game_id"])
+    game_name = data['name']
+    game_image = data['url']
     f.close()
-    if datetime.today().strftime('%Y-%m-%d') == data[0]["tomorrow"]:
+
+    if datetime.today().strftime('%Y-%m-%d') == data['tomorrow']:
         change_date()
         redirect('/')
     if session.get("lifes") is None:
         session["lifes"] = 3
         session["blur"] = 15
-    game_image = data[game_id]["image"]
-    game_name = data[game_id]["name"]  # Mudar diaramente automaticamente
+
     if request.method == 'POST':
         if request.form['guess'].casefold() != game_name.casefold():
             session["lifes"] -= 1
             session["blur"] -= 5
         else:
             session["lifes"] = -1
+            session["blur"] = 0
     return render_template("index.html", lifes=session['lifes'],
                            game_name=game_name, game_image=game_image, data=data,
                            hours_remaining=hours_remaining, min_remaining=min_remaining, blur=session["blur"])
